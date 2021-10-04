@@ -14,10 +14,13 @@ int main(int argc, char const *argv[])
     cout << "size of cache = " << cache.getSize() << endl;
 
     cache.insert(125);
-    //cout << "size of cache = " << cache.getSize() << endl;
+    cout << "size of cache = " << cache.getSize() << endl;
 
     hasValue = cache.find(5);
-    // cout << "Cache has value 5 " << hasValue << endl;
+    cout << "Cache has value 125 = " << hasValue << endl;
+
+    hasValue = cache.find(125);
+    cout << "Cache has value 125 = " << hasValue << endl;
 
     // cache.insert(3);
     // cout << "size of cache = " << cache.getSize() << endl;

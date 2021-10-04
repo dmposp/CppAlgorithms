@@ -10,18 +10,13 @@ LRUCache::LRUCache(const int capacity)
 
 void LRUCache::insert(const int value)
 {
-    Node newNode = Node(value);
-    std::cout << "New node address: " << &newNode << std::endl;
+    Node* newNode = new Node(value);
+
     if (size == 0)
     {
-        head = &newNode;
-        tail = &newNode;
+        head = newNode;
+        tail = newNode;
         size += 1;
-        std::cout << "head " << head << std::endl;
-        std::cout << "tail " << tail << std::endl;
-        std::cout << "value in node " << head->getData() << std::endl;
-        std::cout << "prev " << head->getPrev() << std::endl;
-        std::cout << "next " << head->getNext() << std::endl;
     }
     else
     {
@@ -34,9 +29,9 @@ void LRUCache::insert(const int value)
             size += 1;
         }
 
-        tail->setNext(&newNode);
-        newNode.setPrev(tail);
-        tail = &newNode;
+        tail->setNext(newNode);
+        newNode->setPrev(tail);
+        tail = newNode;
     }
 
     return;
@@ -44,22 +39,14 @@ void LRUCache::insert(const int value)
 
 bool LRUCache::find(const int value)
 {
-    Node *currentPtr = head;
-    std::cout << "value = " << value << std::endl;
-    std::cout << "head data" << head->getData() << std::endl;
+    Node* currentPtr = head;
 
     while (currentPtr)
     {
-        std::cout << "current pointer address " << currentPtr << std::endl;
-        std::cout << head->getData() << std::endl;
-        std::cout << head->getNext() << std::endl;
-        
-
         if (currentPtr->getData() == value)
         {
             if (size == 1 || currentPtr == tail)
             {
-                std::cout << "Found with one" << std::endl;
                 currentPtr = 0;
                 return true;
             }
@@ -78,18 +65,17 @@ bool LRUCache::find(const int value)
                     currentPtr = 0;
                     return true;
                 }
-                else
-                {
-                    // node is not on edges
-                    //logic_error("Not implemented");
-                }
+                // else
+                // {
+                //     // node is not on edges
+                //     //logic_error("Not implemented");
+                // }
             }
             return true;
         }
 
         // move pointer ahead to next node
         currentPtr = currentPtr->getNext();
-        return false;
     }
 
     return false;
@@ -99,8 +85,8 @@ void LRUCache::removeLeastUsedItem()
 {
     Node *nextFirst = head->getNext();
     head->setNext(0);
-    
-    // Remove object pointed to located on the heap
+
+    // Remove object located on the heap
     delete head;
 
     head = nextFirst;

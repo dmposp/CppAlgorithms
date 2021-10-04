@@ -2,12 +2,12 @@
 
 Node::Node(int value)
 {
-    this->data = value;
+    data = value;
 }
 
 int Node::getData()
 {
-    return this->data;
+    return data;
 }
 
 Node* Node::getNext()
