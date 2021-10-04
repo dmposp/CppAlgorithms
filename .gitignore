@@ -31,5 +31,10 @@
 *.out
 *.app
 
-# VSCode
+# Auto-generated files
+/build
+/build_*
+/build-*
+
+# VS Code
 *.vscode
