@@ -9,7 +9,7 @@ class Node
         Node *prev;
 
     public:
-        Node(const int value);
+        Node(int value);
 
         int getData();
 

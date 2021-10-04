@@ -1,14 +1,13 @@
 #include "Node.h"
 
-Node::Node(const int value)
+Node::Node(int value)
 {
-    data = value;
-    //cout << "Node constructor" << endl;
+    this->data = value;
 }
 
 int Node::getData()
 {
-    return data;
+    return this->data;
 }
 
 Node* Node::getNext()

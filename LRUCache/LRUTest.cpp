@@ -8,9 +8,25 @@ TEST(HelloTest, BasicAssertions) {
   EXPECT_EQ(7 * 6, 42);
 }
 
-TEST(HelloTest, BasicLRUTest) {
-  LRUCache lru(1);
+TEST(LRUCache, EmptyTest) {
+  int capacity = 1;
+  LRUCache lru(capacity);
 
-  // empty object has zero size
   EXPECT_EQ(lru.getSize(), 0);
+}
+
+TEST(LRUCache, InsertTest) {
+  int capacity = 1;
+  LRUCache lru(capacity);
+  lru.insert(25);
+
+  EXPECT_EQ(lru.getSize(), 1);
+}
+
+TEST(LRUCache, FindTest) {
+  LRUCache lru(1);
+  lru.insert(25);
+
+  EXPECT_FALSE(lru.find(1));
+  EXPECT_TRUE(lru.find(25));
 }
