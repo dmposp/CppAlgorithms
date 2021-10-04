@@ -12,8 +12,14 @@ int main(int argc, char const *argv[])
     LRUCache cache = LRUCache(capacity);
     cout << "size of cache = " << cache.getSize() << endl;
 
-    // cache.insert(5);
-    // cout << "size of cache = " << cache.getSize() << endl;
+    cache.insert(5);
+    cout << "size of cache = " << cache.getSize() << endl;
+
+    cache.insert(3);
+    cout << "size of cache = " << cache.getSize() << endl;
+
+    cache.insert(4);
+    cout << "size of cache = " << cache.getSize() << endl;
 
     return 0;
 }
