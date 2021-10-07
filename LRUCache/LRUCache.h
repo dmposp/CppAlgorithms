@@ -6,8 +6,8 @@
 class LRUCache
 {
     private:
-        Node *head;
-        Node *tail;
+        Node * head { 0 };
+        Node * tail { 0 };
         int capacity;
         int size;
 

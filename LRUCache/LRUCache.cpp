@@ -10,7 +10,7 @@ LRUCache::LRUCache(const int capacity)
 
 void LRUCache::insert(const int value)
 {
-    Node* newNode = new Node(value);
+    Node * newNode = new Node(value);
 
     if (size == 0)
     {
@@ -39,18 +39,13 @@ void LRUCache::insert(const int value)
 
 bool LRUCache::find(const int value)
 {
-    Node* currentPtr = head;
+    Node * currentPtr = head;
 
     while (currentPtr)
     {
         if (currentPtr->getData() == value)
         {
-            if (size == 1 || currentPtr == tail)
-            {
-                currentPtr = 0;
-                return true;
-            }
-            else
+            if (size > 1 || currentPtr != tail)
             {
                 tail->setNext(currentPtr);
 
@@ -62,22 +57,25 @@ bool LRUCache::find(const int value)
                     currentPtr->setNext(0);
                     tail = currentPtr;
 
-                    currentPtr = 0;
-                    return true;
+                    // currentPtr = 0;
+                    // return true;
                 }
-                // else
-                // {
-                //     // node is not on edges
-                //     //logic_error("Not implemented");
-                // }
+                else
+                {
+                    // node is not on edges
+                    currentPtr->getPrev()->setNext(currentPtr->getNext());
+                    currentPtr->getNext()->setPrev(currentPtr->getPrev());
+                    currentPtr->setPrev(currentPtr->getNext());
+                    currentPtr->setNext(0);
+                    tail = currentPtr;
+                }
             }
+
             return true;
         }
-
         // move pointer ahead to next node
         currentPtr = currentPtr->getNext();
     }
-
     return false;
 }
 

@@ -5,21 +5,21 @@ class Node
 {
     private:
         int data;
-        Node *next;
-        Node *prev;
+        Node * next { 0 };
+        Node * prev { 0 };
 
     public:
         Node(int value);
 
         int getData();
 
-        Node *getNext();
+        Node * getNext();
 
-        Node *getPrev();
+        Node * getPrev();
 
-        void setNext(Node *node);
+        void setNext(Node * node);
 
-        void setPrev(Node *node);
+        void setPrev(Node * node);
 };
 
 #endif
