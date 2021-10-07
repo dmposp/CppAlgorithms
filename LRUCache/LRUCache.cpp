@@ -56,9 +56,6 @@ bool LRUCache::find(const int value)
                     head->setPrev(0);
                     currentPtr->setNext(0);
                     tail = currentPtr;
-
-                    // currentPtr = 0;
-                    // return true;
                 }
                 else
                 {
@@ -71,17 +68,20 @@ bool LRUCache::find(const int value)
                 }
             }
 
+            currentPtr = 0;
             return true;
         }
         // move pointer ahead to next node
         currentPtr = currentPtr->getNext();
     }
+
+    currentPtr = 0;
     return false;
 }
 
 void LRUCache::removeLeastUsedItem()
 {
-    Node *nextFirst = head->getNext();
+    Node * nextFirst = head->getNext();
     head->setNext(0);
 
     // Remove object located on the heap
