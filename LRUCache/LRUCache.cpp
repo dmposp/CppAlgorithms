@@ -17,12 +17,13 @@ LRUCache::LRUCache(const int capacity)
  *
  * @param[in] key identifier for quick lookup
  * @param[in] value holds content
+ * @return true or false
  */
-void LRUCache::add(int key, int value)
+bool LRUCache::add(int key, int value)
 {
     if (cacheMap.find(key) == cacheMap.end())
     {
-        // Key not in cache. Create new entry.
+        // Key is not in cache. Add new entry.
         Node* newNode = new Node(key, value);
 
         if (cacheMap.empty())
@@ -32,34 +33,44 @@ void LRUCache::add(int key, int value)
         }
         else if (cacheMap.size() == capacity)
         {
-            // Cache is full. Remove least recently used item
-            int leastUsedKey = tail->getKey();
-            cacheMap.erase(leastUsedKey);
+            // Remove least recently used item
+            cacheMap.erase(tail->getKey());
 
             if (cacheMap.empty())
             {
+                // List has one item
                 delete tail;
                 head = newNode;
                 tail = newNode;
             }
             else
             {
+                // List has many items
                 Node* prevNode = tail->getPrev();
 
                 delete tail;
                 tail = prevNode;
                 tail->setNext(0);
+
+                head->setPrev(newNode);
+                newNode->setNext(head);
+                head = newNode;
             }
         }
         else
         {
+            // List has not reached its limit yet.
+            // Safe to directly add item.
             head->setPrev(newNode);
             newNode->setNext(head);
             head = newNode;
         }
 
         cacheMap[key] = newNode;
+        return true;
     }
+
+    return false;
 }
 
 /**
@@ -69,16 +80,16 @@ void LRUCache::add(int key, int value)
  * @param[in] key identifier for quick lookup
  * @return value for key
  */
-int LRUCache::get(int key)
+bool LRUCache::get(int key)
 {
-    if (!cacheMap[key])
+    if (cacheMap.find(key) == cacheMap.end())
     {
-        return -1;
+        return false;
     }
 
-    if (cacheMap[key] == head || (cacheMap.size() == 1 && cacheMap[key]))
+    if (cacheMap[key] == head)
     {
-        return cacheMap[key]->getValue();
+        return true;
     }
 
     head->setPrev(cacheMap[key]);
