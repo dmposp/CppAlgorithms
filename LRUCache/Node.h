@@ -1,25 +1,30 @@
 #ifndef NODE_H
 #define NODE_H
 
+#include <string>
+
 class Node
 {
     private:
-        int data;
-        Node * next { 0 };
-        Node * prev { 0 };
+        int key;
+        int value;
+        Node* next;
+        Node* prev;
 
     public:
-        Node(int value);
+        Node(int key, int value);
 
-        int getData();
+        int getKey();
 
-        Node * getNext();
+        int getValue();
 
-        Node * getPrev();
+        Node* getNext();
 
-        void setNext(Node * node);
+        Node* getPrev();
 
-        void setPrev(Node * node);
+        void setNext(Node* node);
+
+        void setPrev(Node* node);
 };
 
 #endif

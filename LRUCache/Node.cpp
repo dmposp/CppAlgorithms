@@ -1,13 +1,21 @@
 #include "Node.h"
 
-Node::Node(int value)
+Node::Node(int key, int value)
 {
-    data = value;
+    this->key = value;
+    this->value = value;
+    next = 0;
+    prev = 0;
 }
 
-int Node::getData()
+int Node::getKey()
 {
-    return data;
+    return key;
+}
+
+int Node::getValue()
+{
+    return value;
 }
 
 Node * Node::getNext()

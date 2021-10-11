@@ -2,23 +2,24 @@
 #define LRUCache_H
 
 #include "Node.h"
+#include <unordered_map>
+
+//typedef ;
 
 class LRUCache
 {
     private:
-        Node * head { 0 };
-        Node * tail { 0 };
         int capacity;
-        int size;
+        std::unordered_map<int, Node*> cacheMap;
+        Node* head;
+        Node* tail;
 
     public:
         LRUCache(const int capacity);
 
-        void insert(const int value);
+        void put(int key, int value);
 
-        bool find(const int value);
-
-        void removeLeastUsedItem();
+        int get(const int key);
 
         int getSize();
 };

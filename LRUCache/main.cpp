@@ -1,4 +1,5 @@
 #include <iostream>
+//#include <unordered_map>
 #include "Node.h"
 #include "LRUCache.h"
 
@@ -9,17 +10,14 @@ int main(int argc, char const *argv[])
 {
     LRUCache cache = LRUCache(3);
 
-    //cache.insert(25);
-    //cache.insert(35);
-    //cache.insert(45);
-    //cout << "--" << endl;
+    // std::unordered_map<int, int> cacheMap;
 
-    //cout << "size of cache = " << cache.getSize() << endl;
-    //int num = 20;
-    //int res = cache.find(num);
-    //cout << "Find " << num << " = " << res << endl;
-    // cout << "Cache has value 35 = " << cache.find(35) << endl;
-    // cout << "Cache has value 45 = " << cache.find(45) << endl;
+    // std::cout << "Size in map = " << cacheMap.size() << endl;
+
+    // std::unordered_map<int, int>::const_iterator got = cacheMap.find(1);
+    // bool res = got == cacheMap.end();
+    // std::cout << "value = " << res << endl;
+    // std::cout << "Size in map = " << cacheMap.size() << endl;
 
     return 0;
 }
