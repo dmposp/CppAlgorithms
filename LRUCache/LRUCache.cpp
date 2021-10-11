@@ -18,7 +18,7 @@ LRUCache::LRUCache(const int capacity)
  * @param[in] key identifier for quick lookup
  * @param[in] value holds content
  */
-void LRUCache::put(int key, int value)
+void LRUCache::add(int key, int value)
 {
     if (cacheMap.find(key) == cacheMap.end())
     {

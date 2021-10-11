@@ -12,7 +12,7 @@ TEST(LruCache, ConstructorTest) {
 TEST(LruCache, AddOneItemTest) {
   LRUCache lru(1);
 
-  lru.put(5, 15);
+  lru.add(5, 15);
   EXPECT_EQ(lru.getSize(), 1);
 }
 
@@ -20,8 +20,8 @@ TEST(LruCache, SingleCapacityTest) {
   LRUCache lru(1);
   EXPECT_EQ(lru.getSize(), 0);
 
-  lru.put(5, 15);
-  lru.put(6, 16);
+  lru.add(5, 15);
+  lru.add(6, 16);
   EXPECT_EQ(lru.getSize(), 1);
 }
 
@@ -29,20 +29,20 @@ TEST(LruCache, ManyCapacityTest) {
   LRUCache lru(2);
   EXPECT_EQ(lru.getSize(), 0);
 
-  lru.put(5, 15);
-  lru.put(6, 16);
-  lru.put(6, 16);
+  lru.add(5, 15);
+  lru.add(6, 16);
+  lru.add(6, 16);
   EXPECT_EQ(lru.getSize(), 2);
 }
 
 TEST(LruCache, DuplicatesTest) {
   LRUCache lru(4);
 
-  lru.put(6, 16);
-  lru.put(6, 16);
-  lru.put(6, 16);
+  lru.add(6, 16);
+  lru.add(6, 16);
+  lru.add(6, 16);
   EXPECT_EQ(lru.getSize(), 1);
 
-  lru.put(7, 17);
+  lru.add(7, 17);
   EXPECT_EQ(lru.getSize(), 2);
 }

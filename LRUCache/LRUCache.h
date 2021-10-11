@@ -16,7 +16,7 @@ class LRUCache
     public:
         LRUCache(const int capacity);
 
-        void put(int key, int value);
+        void add(int key, int value);
 
         int get(const int key);
 
