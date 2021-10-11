@@ -6,7 +6,6 @@
 LRUCache::LRUCache(const int capacity)
 {
     this->capacity = capacity;
-    cacheMap.reserve(2);
     head = 0;
     tail = 0;
 }
