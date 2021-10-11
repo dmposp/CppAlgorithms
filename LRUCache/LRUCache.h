@@ -4,7 +4,6 @@
 #include "Node.h"
 #include <unordered_map>
 
-//typedef ;
 
 class LRUCache
 {

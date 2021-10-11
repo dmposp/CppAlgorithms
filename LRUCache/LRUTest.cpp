@@ -34,3 +34,15 @@ TEST(LruCache, ManyCapacityTest) {
   lru.put(6, 16);
   EXPECT_EQ(lru.getSize(), 2);
 }
+
+TEST(LruCache, DuplicatesTest) {
+  LRUCache lru(4);
+
+  lru.put(6, 16);
+  lru.put(6, 16);
+  lru.put(6, 16);
+  EXPECT_EQ(lru.getSize(), 1);
+
+  lru.put(7, 17);
+  EXPECT_EQ(lru.getSize(), 2);
+}
