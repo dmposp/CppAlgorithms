@@ -23,28 +23,34 @@ void LRUCache::put(int key, int value)
 {
     if (cacheMap.find(key) == cacheMap.end())
     {
-        // Create new entry
+        // Key not in cache. Create new entry.
         Node* newNode = new Node(key, value);
 
-        if (cacheMap.size() == 0)
+        if (cacheMap.empty())
         {
             head = newNode;
             tail = newNode;
         }
         else if (cacheMap.size() == capacity)
         {
-            // Full cache, remove least recently used item in list
+            // Cache is full. Remove least recently used item
             int leastUsedKey = tail->getKey();
-
-            Node* prevNode = tail->getPrev();
-
-            // Delete last node from the heap
-            delete tail;
-            tail = prevNode;
-            tail->setNext(0);
-
-            // Remove from cacheMap
             cacheMap.erase(leastUsedKey);
+
+            if (cacheMap.empty())
+            {
+                delete tail;
+                head = newNode;
+                tail = newNode;
+            }
+            else
+            {
+                Node* prevNode = tail->getPrev();
+
+                delete tail;
+                tail = prevNode;
+                tail->setNext(0);
+            }
         }
         else
         {

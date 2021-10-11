@@ -16,7 +16,21 @@ TEST(LruCache, AddOneItemTest) {
   EXPECT_EQ(lru.getSize(), 1);
 }
 
-  // lru.put(6, 16);
-  // EXPECT_EQ(lru.getSize(), 1);
-  // EXPECT_EQ(lru.get(6), 16);
+TEST(LruCache, SingleCapacityTest) {
+  LRUCache lru(1);
+  EXPECT_EQ(lru.getSize(), 0);
 
+  lru.put(5, 15);
+  lru.put(6, 16);
+  EXPECT_EQ(lru.getSize(), 1);
+}
+
+TEST(LruCache, ManyCapacityTest) {
+  LRUCache lru(2);
+  EXPECT_EQ(lru.getSize(), 0);
+
+  lru.put(5, 15);
+  lru.put(6, 16);
+  lru.put(6, 16);
+  EXPECT_EQ(lru.getSize(), 2);
+}

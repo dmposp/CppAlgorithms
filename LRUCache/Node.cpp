@@ -2,7 +2,7 @@
 
 Node::Node(int key, int value)
 {
-    this->key = value;
+    this->key = key;
     this->value = value;
     next = 0;
     prev = 0;
