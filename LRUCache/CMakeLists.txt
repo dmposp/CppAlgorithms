@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.10)
 
 # set the project name
-project(LRUCache)
+project(lrucache)
 
 # set C++ version
 set(CMAKE_CXX_STANDARD 11)
@@ -15,22 +15,22 @@ FetchContent_Declare(
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
-# target_link_libraries(LRUCache LRUCache.cpp Node.cpp main.cpp)
-add_library(LRUCache LRUCache.cpp Node.cpp)
+# target_link_libraries(lrucache lrucache.cc doubly_list.cc main.cc)
+add_library(lrucache lrucache.cc doubly_list.cc)
 
 # add the executable
-# add_executable(LRUCache LRUCache.cpp Node.cpp)
+# add_executable(lrucache lrucache.cc doubly_list.cc)
 
 # build test
 enable_testing()
 
  add_executable(
-  LRUTest
-  LRUTest.cpp
+  lru_test
+  lru_test.cc
 )
 
 target_link_libraries(
-  LRUTest
-  LRUCache
+  lru_test
+  lrucache
   gtest_main
 )

@@ -10,14 +10,14 @@ CC = gcc
 
 # VPATH = CppAlgorithms:CppAlgorithms/LRUCache
 
-main: main.o Node.o LRUCache.o
-	g++ -o a.out main.o LRUCache.o Node.o
+main: main.o doubly_list.o lrucache.o
+	g++ -o a.out main.o lrucache.o doubly_list.o
 
-main.o: main.cpp
-	g++ -c main.cpp
+main.o: main.cc
+	g++ -c main.cc
 
-Node.o: Node.cpp Node.h
-	g++ -c Node.cpp
+doubly_list.o: doubly_list.cc doubly_list.h
+	g++ -c doubly_list.cc
 
-LRUCache.o: LRUCache.cpp LRUCache.h
-	g++ -c LRUCache.cpp
+lrucache.o: lrucache.cc lrucache.h
+	g++ -c lrucache.cc

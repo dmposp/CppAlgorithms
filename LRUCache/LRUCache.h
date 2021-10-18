@@ -1,27 +1,28 @@
-#ifndef LRUCache_H
-#define LRUCache_H
+#ifndef LRUCACHE_H_
+#define LRUCACHE_H_
 
-#include "Node.h"
 #include <unordered_map>
 
+#include "doubly_list.h"
 
-class LRUCache
-{
-    private:
-        int capacity;
-        std::unordered_map<int, Node*> cacheMap;
-        Node* head;
-        Node* tail;
 
-    public:
-        LRUCache(const int capacity);
+template <class K, class V>
+class LRUCache {
 
-        bool add(int key, int value);
+public:
+    LRUCache(const int cap): capacity(cap) {};  // Constructor init
+    // destructor here
 
-        // bool get(Key k, Value& v)
-        bool get(const int key);
+    bool add(K key, const V & value);
 
-        int getSize();
+    V get(K key);  // bool get(K k, V& v)
+
+    int size() const { return cacheMap.size(); };
+
+private:
+    std::unordered_map<K, V> cacheMap;
+    Doubly_List<K, V> doublyList;
+    int capacity;
 };
 
-#endif
+#endif  // LRUCACHE_H_
